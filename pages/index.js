@@ -87,16 +87,17 @@ export default class Home extends React.Component {
                 Temporary File Storage by
                 <Button appearance="link" className="margin-x-0 padding-x-0" onClick={openBarelyHuman}>Barely Human</Button>
               </small>
-
             </p>
           </h3>
+
+          <div className="top-bar">
+            <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
+              API Documentation
+            </Button>
+          </div>
+
           <div className="flex align-center height-100">
             <div className="center-container">
-              <div className="top-bar">
-                <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
-                  API Documentation
-                </Button>
-              </div>
 
               {!currentFileList.length ? (
                 <div className="drop-zone-container">
@@ -151,10 +152,7 @@ export default class Home extends React.Component {
                   width:300px;
                   height:400px;
                   box-sizing:border-box;
-                  background:#fff;
-                  border-radius: 15px;
-                  box-shadow:  30px 30px 60px rgba(0,0,0,0.12), 
-                    -30px -30px 60px rgba(0,0,0,0.12);
+                  
                 }
 
                 .drop-zone-container{
@@ -164,7 +162,6 @@ export default class Home extends React.Component {
                 }
 
                 .file-name{
-                  max-width: 171px;
                   overflow: hidden;
                   text-overflow: ellipsis;
                   white-space: nowrap;
