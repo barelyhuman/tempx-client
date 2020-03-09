@@ -167,6 +167,7 @@ export default class Home extends React.Component {
                   white-space: nowrap;
                   display: block;
                   color:#595EF2;
+                  margin-bottom:8px;
                 }
 
                 .file-list-container{
