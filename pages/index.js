@@ -63,9 +63,7 @@ export default class Home extends React.Component {
       .then((data) => {
         this.setState({ fileKeys: { ...fileKeys, [fileToUpload.name]: data.data.accessKey } });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(() => {});
   }
 
   render() {
