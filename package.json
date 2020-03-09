@@ -8,10 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@atlaskit/button": "^13.3.7",
     "@atlaskit/progress-bar": "^0.2.7",
     "axios": "^0.19.2",
     "next": "9.2.2",
     "react": "16.13.0",
+    "react-circular-progressbar": "^2.0.3",
     "react-dom": "16.13.0",
     "react-dropzone": "^10.2.1",
     "react-file-drop": "^0.2.8",

@@ -6,16 +6,49 @@ function DropZone({ dropAction }) {
     dropAction(acceptedFiles);
   }, []);
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()} className="border-bottom padding-25-px">
+    <div {...getRootProps()} className="drop-zone">
       <input {...getInputProps()} />
-      {
-        isDragActive
-          ? <p>Drop the files here ...</p>
-          : <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
+      <div>
+        <p className="primary-text">Drop</p>
+        <p className="secondary-text">
+          your files here, or
+          {' '}
+          <span className="underline">browse</span>
+        </p>
+      </div>
+      <style>
+        {
+        `
+        .drop-zone{
+          width:100%;
+          cursor:pointer;
+          outline:none;
+          text-align:center;
+        }
+
+        .primary-text{
+          color:#595EF2;
+          font-size:18px;
+          margin:10px 0px;
+        }
+
+        .secondary-text{
+          color:#A1AAD0;
+          font-size:12px;
+        }
+
+        .underline{
+          text-decoration:underline;
+        }
+        
+
+        `
       }
+
+      </style>
     </div>
   );
 }

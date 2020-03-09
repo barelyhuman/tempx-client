@@ -15,7 +15,7 @@ padding: 0;
 html,
 body {
 font-family: 'Exo 2',sans-serif;
-background:#fff
+background:#595EF2
 }
 
 section {
@@ -245,6 +245,11 @@ color:#50a586;
   margin-bottom: 5px;
 }
 
+.margin-y-2{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .margin-x-1{
   margin-left: 5px;
   margin-right: 5px;
@@ -261,6 +266,14 @@ color:#50a586;
 .border-bottom{
   border-bottom:1px solid #333;
 }
+
+.flex-col{
+  flex-direction:column;
+}
+
+      .secondary-text{
+        color:#A1AAD0 !important;
+      }
         `
         }
       </style>
