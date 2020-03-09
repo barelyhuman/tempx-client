@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import ProgressBar from '@atlaskit/progress-bar';
 import Button, { ButtonGroup } from '@atlaskit/button';
+import Head from 'next/head';
 
 import Layout from '../components/Layout';
 import DropZone from '../components/drop-zone';
@@ -13,6 +14,10 @@ const openDocumentation = () => {
   return false;
 };
 
+const openBarelyHuman = () => {
+  window.open('https://barelyhuman.dev', '_blank');
+  return false;
+};
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -70,21 +75,36 @@ export default class Home extends React.Component {
     const { fileKeys, currentFileList, uploadProgress } = this.state;
     return (
       <Layout>
-        <div className="center-container">
+        <Head>
+          <title>TempX - Temporary File Storage</title>
+          <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet" />
+        </Head>
+        <div className="flex flex-col">
+          <h3 className="title-text">
+            TempX
+            <p>
+              <small>
+                Temporary File Storage by
+                <Button appearance="link" className="margin-x-0 padding-x-0" onClick={openBarelyHuman}>Barely Human</Button>
+              </small>
 
-          <div className="top-bar">
-            <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
-              API Documentation
-            </Button>
-          </div>
+            </p>
+          </h3>
+          <div className="flex align-center height-100">
+            <div className="center-container">
+              <div className="top-bar">
+                <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
+                  API Documentation
+                </Button>
+              </div>
 
-          {!currentFileList.length ? (
-            <div className="drop-zone-container">
-              <DropZone dropAction={this.uploadFileOnDrop} />
-            </div>
-          ) : null}
+              {!currentFileList.length ? (
+                <div className="drop-zone-container">
+                  <DropZone dropAction={this.uploadFileOnDrop} />
+                </div>
+              ) : null}
 
-          {
+              {
             currentFileList.length ? (
               <div className="file-list-container">
                 <ul>
@@ -99,7 +119,7 @@ export default class Home extends React.Component {
                           {fileKeys[item.name]
                             ? (
                               <ButtonGroup appearance="subtle">
-                                <Button className="margin-y-1 secondary-text" onClick={() => this.openImage(item.name)}>
+                                <Button className="margin-y-1 primary-text" onClick={() => this.openImage(item.name)}>
                                   View
                                 </Button>
                                 <Button className="margin-y-1 secondary-text" onClick={() => this.setState({ currentFileList: [] })}>
@@ -115,18 +135,22 @@ export default class Home extends React.Component {
               </div>
             ) : null
           }
+            </div>
+          </div>
         </div>
         <style jsx>
           {`
+
+                .title-text{
+                  margin-top:10px;
+                  text-align:center;
+                  color:#333;
+                }
 
                 .center-container{
                   width:300px;
                   height:400px;
                   box-sizing:border-box;
-                  position:absolute;
-                  top:50%;
-                  left:50%;
-                  transform:translate(-50%,-50%);
                   background:#fff;
                   border-radius: 15px;
                   box-shadow:  30px 30px 60px rgba(0,0,0,0.12), 
@@ -135,7 +159,7 @@ export default class Home extends React.Component {
 
                 .drop-zone-container{
                   position:relative;
-                  top:50%;
+                  top:40%;
                   transform:translateY(-50%);
                 }
 
@@ -150,25 +174,22 @@ export default class Home extends React.Component {
 
                 .file-list-container{
                   position:relative;
-                  top:50%;
+                  top:40%;
                   transform:translateY(-50%);
                 }
 
                 .top-bar{
-                  position: absolute;
-                  top: 15px;
-                  font-size: 12px;
+                  font-size: 14px;
                   text-align: center;
-                  width: 100%;
-                  color:#A1AAD0;
                 }
 
                 .top-bar .top-bar-item:hover{
-                  color:#595EF2;
+                  color:#000 !important;
                 }
 
                 .top-bar .top-bar-item{
                   cursor:pointer;
+                  color:#333 important;
                 }
 
 
