@@ -74,38 +74,38 @@ export default class Home extends React.Component {
   render() {
     const { fileKeys, currentFileList, uploadProgress } = this.state;
     return (
-      <Layout>
-        <Head>
-          <title>TempX - Temporary File Storage</title>
-          <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet" />
-        </Head>
-        <div className="flex flex-col width-100">
-          <h3 className="title-text">
-            TempX
-            <p>
-              <small>
-                Temporary File Storage by
-                <Button appearance="link" className="margin-x-0 padding-x-0" onClick={openBarelyHuman}>Barely Human</Button>
-              </small>
-            </p>
-          </h3>
+      <>
+        <Layout>
+          <Head>
+            <title>TempX - Temporary File Storage</title>
+            <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet" />
+          </Head>
+          <div className="flex flex-col width-100 secondary-text-color">
+            <h3 className="title-text">
+              TempX
+              <p>
+                <small>
+                  Temporary File Storage
+                </small>
+              </p>
+            </h3>
 
-          <div className="top-bar">
-            <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
-              API Documentation
-            </Button>
-          </div>
+            <div className="top-bar">
+              <Button appearance="subtle-link" className="top-bar-item" onClick={() => openDocumentation()}>
+                API Documentation
+              </Button>
+            </div>
 
-          <div className="flex align-center width-100 height-100">
-            <div className="center-container height-100 width-100">
+            <div className="flex align-center width-100 height-100">
+              <div className="center-container height-100 width-100">
 
-              {!currentFileList.length ? (
-                <div className="drop-zone-container height-100 width-100">
-                  <DropZone dropAction={this.uploadFileOnDrop} />
-                </div>
-              ) : null}
+                {!currentFileList.length ? (
+                  <div className="drop-zone-container height-100 width-100">
+                    <DropZone dropAction={this.uploadFileOnDrop} />
+                  </div>
+                ) : null}
 
-              {
+                {
             currentFileList.length ? (
               <div className="file-list-container width-100">
                 <ul>
@@ -136,16 +136,15 @@ export default class Home extends React.Component {
               </div>
             ) : null
           }
+              </div>
             </div>
           </div>
-        </div>
-        <style jsx>
-          {`
+          <style jsx>
+            {`
 
                 .title-text{
                   margin-top:10px;
                   text-align:center;
-                  color:#333;
                 }
 
                 .center-container{
@@ -189,9 +188,28 @@ export default class Home extends React.Component {
 
 
                 `}
-        </style>
-
-      </Layout>
+          </style>
+        </Layout>
+        <footer>
+          <p className="font-size-12-px">
+            <small>
+              <Button appearance="subtle-link" className="margin-x-0 padding-x-0 underline" onClick={openBarelyHuman}>by Barely Human</Button>
+            </small>
+          </p>
+          <style jsx>
+            {`
+                  footer{
+                    position:fixed;
+                    bottom:0;
+                    left:0;
+                    right:0;
+                    height:41px;
+                    text-align:center;
+                  }
+                `}
+          </style>
+        </footer>
+      </>
     );
   }
 }

@@ -223,7 +223,7 @@ export default function Layout({ children }) {
             .flex-col{
                 flex-direction:column;
             }
-            .secondary-text{
+            .secondary-text-color{
                 color:#A1AAD0 !important;
             }
             .margin-x-0{
@@ -240,6 +240,10 @@ export default function Layout({ children }) {
 
             .primary-text{
               color:#595EF2 !important;
+            }
+
+            .font-size-12-px{
+                font-size:14px;
             }
         `
         }
