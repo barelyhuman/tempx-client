@@ -1,24 +1,28 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
+import BlobAnimation from './blob-animation';
 
 function DropZone({ dropAction }) {
   const onDrop = useCallback((acceptedFiles) => {
     dropAction(acceptedFiles);
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div {...getRootProps()} className="drop-zone">
       <input {...getInputProps()} />
-      <div>
-        <p className="primary-text">Drop</p>
-        <p className="secondary-text">
-          your files here, or
-          {' '}
-          <span className="underline">browse</span>
-        </p>
-      </div>
+      {!isDragActive ? (
+        <div className="drop-zone-content">
+          <p className="primary-text">Drop</p>
+          <p className="secondary-text">
+            your files here, or
+            {' '}
+            <span className="underline">browse</span>
+          </p>
+        </div>
+      )
+        : <BlobAnimation show={isDragActive} />}
       <style>
         {
         `
@@ -27,6 +31,10 @@ function DropZone({ dropAction }) {
           cursor:pointer;
           outline:none;
           text-align:center;
+        }
+
+        .drop-zone-content{
+          transition:all 1000ms ease;
         }
 
         .primary-text{

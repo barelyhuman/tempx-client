@@ -79,7 +79,7 @@ export default class Home extends React.Component {
           <title>TempX - Temporary File Storage</title>
           <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600&display=swap" rel="stylesheet" />
         </Head>
-        <div className="flex flex-col">
+        <div className="flex flex-col width-100">
           <h3 className="title-text">
             TempX
             <p>
@@ -96,18 +96,18 @@ export default class Home extends React.Component {
             </Button>
           </div>
 
-          <div className="flex align-center height-100">
-            <div className="center-container">
+          <div className="flex align-center width-100 height-100">
+            <div className="center-container width-100">
 
               {!currentFileList.length ? (
-                <div className="drop-zone-container">
+                <div className="drop-zone-container width-100">
                   <DropZone dropAction={this.uploadFileOnDrop} />
                 </div>
               ) : null}
 
               {
             currentFileList.length ? (
-              <div className="file-list-container">
+              <div className="file-list-container width-100">
                 <ul>
                   {currentFileList.map((item) => (
                     <li key={item.name}>
@@ -149,10 +149,7 @@ export default class Home extends React.Component {
                 }
 
                 .center-container{
-                  width:300px;
-                  height:400px;
                   box-sizing:border-box;
-                  
                 }
 
                 .drop-zone-container{
