@@ -39,13 +39,13 @@ function DropZone({ dropAction }) {
 
         .primary-text{
           color:#595EF2;
-          font-size:25px;
+          font-size:40px;
           margin:10px 0px;
         }
 
         .secondary-text{
           color:#A1AAD0;
-          font-size:12px;
+          font-size:16px;
         }
 
         .underline{
