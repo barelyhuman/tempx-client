@@ -97,10 +97,10 @@ export default class Home extends React.Component {
           </div>
 
           <div className="flex align-center width-100 height-100">
-            <div className="center-container width-100">
+            <div className="center-container height-100 width-100">
 
               {!currentFileList.length ? (
-                <div className="drop-zone-container width-100">
+                <div className="drop-zone-container height-100 width-100">
                   <DropZone dropAction={this.uploadFileOnDrop} />
                 </div>
               ) : null}

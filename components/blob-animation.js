@@ -4,9 +4,7 @@ const BlobAnimation = (props) => {
   const { show } = props;
   const [display, setDisplay] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
-      setDisplay(show ? 'active' : '');
-    }, 100);
+    setDisplay(show ? 'active' : '');
   }, [show]);
 
   return (
