@@ -44,7 +44,7 @@ export default class Home extends React.Component {
   openImage(identifier) {
     const { fileKeys } = this.state;
     if (fileKeys[identifier]) {
-      const url = `${config.APIURL}/images/get/${fileKeys[identifier]}`;
+      const url = `${config.APIURL}/files/get/${fileKeys[identifier]}`;
       window.open(url, '_blank');
     }
   }
@@ -56,7 +56,7 @@ export default class Home extends React.Component {
     const fd = new FormData();
     const fileToUpload = e[0];
     fd.append('file', fileToUpload);
-    axios.post(`${config.APIURL}/images/upload?expiry=10m`,
+    axios.post(`${config.APIURL}/files/upload?expiry=10m`,
       fd,
       {
         onUploadProgress: (progressEvent) => {
