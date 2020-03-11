@@ -56,7 +56,7 @@ export default class Home extends React.Component {
     const fd = new FormData();
     const fileToUpload = e[0];
     fd.append('file', fileToUpload);
-    axios.post(`${config.APIURL}/images/upload?expiry=30 secs`,
+    axios.post(`${config.APIURL}/images/upload?expiry=10m`,
       fd,
       {
         onUploadProgress: (progressEvent) => {
