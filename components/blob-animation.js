@@ -12,6 +12,8 @@ const BlobAnimation = (props) => {
       <img className={`blob-base blob-small  ${display}`} src="/blob-1.svg" alt="" />
       <img className={`blob-base blob-medium  ${display}`} src="/blob-2.svg" alt="" />
       <img className={`blob-base blob-large  ${display}`} src="/blob-3.svg" alt="" />
+      <img className={`blob-base blob-medium  ${display}`} src="/blob-4.svg" alt="" />
+      <img className={`blob-base blob-large  ${display}`} src="/blob-5.svg" alt="" />
 
       <style>
         {

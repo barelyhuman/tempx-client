@@ -10,7 +10,7 @@ function DropZone({ dropAction }) {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()} className="drop-zone height-100 width-100 flex just-center align-center">
+    <div {...getRootProps()} className="drop-zone flex just-center align-center">
       <input {...getInputProps()} />
       {!isDragActive ? (
         <div className="drop-zone-content">
@@ -27,7 +27,8 @@ function DropZone({ dropAction }) {
         {
         `
         .drop-zone{
-          width:100%;
+          width:-webkit-fill-available;
+          height:-webkit-fill-available;
           cursor:pointer;
           outline:none;
           text-align:center;
@@ -38,14 +39,14 @@ function DropZone({ dropAction }) {
         }
 
         .primary-text{
-          color:#595EF2;
-          font-size:40px;
+          color:var(--primary-color);
+          font-size:25px;
           margin:10px 0px;
         }
 
         .secondary-text{
-          color:#A1AAD0;
-          font-size:16px;
+          color:var(--secondary-color);
+          font-size:14px;
         }
 
         .underline{
