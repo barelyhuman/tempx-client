@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import ProgressBar from '@atlaskit/progress-bar';
-import Button, { ButtonGroup } from '@atlaskit/button';
+import Button from '@atlaskit/button';
 import Head from 'next/head';
 import DropZone from '../components/drop-zone';
 
@@ -91,9 +91,7 @@ export default class Home extends React.Component {
           const { fileKeys } = this.state;
           this.setState({ fileKeys: { ...fileKeys, [uploadFileKey]: data.data.accessKey } });
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch(() => {});
     });
   }
 
