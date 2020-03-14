@@ -123,9 +123,6 @@ export default class Home extends React.Component {
             </a>
           </div>
           <div className="margin-x-2 margin-y-2 flex align-center">
-            <button type="button" className="margin-x-2 link-button" onClick={this.toggleDarkMode}>
-              <i className="gg-moon dark-mode-button" />
-            </button>
             <a className="animated-underline" href={documentationLink}>
               API Documentation
             </a>
@@ -175,7 +172,10 @@ export default class Home extends React.Component {
                 : null
             }
         </section>
-        <footer className="sticky-footer">
+        <footer className="sticky-footer flex just-center align-center">
+          <button title="Toggle Night Mode" type="button" className="margin-x-2 dark-mode-button link-button" onClick={this.toggleDarkMode}>
+            <i className="gg-moon" />
+          </button>
           <p>
             Made at
             {' '}
@@ -346,7 +346,7 @@ export default class Home extends React.Component {
               color:${colors.primaryColor} !important;
             }
 
-            .dark-mode-button.gg-moon::after{
+            .dark-mode-button .gg-moon::after{
               box-shadow: 0px 0px 0px 10px !important;
             }
 
