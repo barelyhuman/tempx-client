@@ -97,7 +97,7 @@ export default class Home extends React.Component {
 
   render() {
     const {
-      colors, fileKeys, currentFileList, uploadProgress,
+      colorState, colors, fileKeys, currentFileList, uploadProgress,
     } = this.state;
     return (
       <main className="main-container">
@@ -108,7 +108,6 @@ export default class Home extends React.Component {
           <link href="https://unpkg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Abel&family=Ubuntu&display=swap" rel="stylesheet" />
           <link href="https://css.gg/check.css" rel="stylesheet" />
-          <link href="https://css.gg/moon.css" rel="stylesheet" />
         </Head>
         <nav className="flex just-space-between align-baseline flex-wrap">
           <div className="margin-x-2 margin-y-2">
@@ -174,7 +173,20 @@ export default class Home extends React.Component {
         </section>
         <footer className="sticky-footer flex just-center align-center">
           <button title="Toggle Night Mode" type="button" className="margin-x-2 dark-mode-button link-button" onClick={this.toggleDarkMode}>
-            <i className="gg-moon" />
+            {
+              colorState === 'dark' ? (
+                <svg viewBox="0 0 20 20" height="24px" fill="currentColor">
+                  <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
+                </svg>
+              ) : null
+            }
+            {
+              colorState === 'light' ? (
+                <svg viewBox="0 0 20 20" height="24px" fill="currentColor">
+                  <path fillRule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clipRule="evenodd" />
+                </svg>
+              ) : null
+            }
           </button>
           <p>
             Made at
@@ -345,10 +357,6 @@ export default class Home extends React.Component {
 
             .flat-button{
               color:${colors.primaryColor} !important;
-            }
-
-            .dark-mode-button .gg-moon::after{
-              box-shadow: 0px 0px 0px 10px !important;
             }
 
           `}
