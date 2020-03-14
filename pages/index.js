@@ -10,6 +10,17 @@ import config from '../config/config';
 const documentationLink = 'https://documenter.getpostman.com/view/10646880/SzRxUprP?version=latest';
 const barelyHumanLink = 'https://barelyhuman.dev';
 
+const defaultModeColors = {
+  primaryColor: '#151328',
+  pageForeground: '#999999',
+  pageBackground: '#ffffff',
+};
+
+const darkModeColors = {
+  primaryColor: '#eeeeee',
+  pageForeground: '#333333',
+  pageBackground: '#111111',
+};
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -17,10 +28,13 @@ export default class Home extends React.Component {
     this.uploadFileOnDrop = this.uploadFileOnDrop.bind(this);
     this.openImageTemplate = this.openImage.bind(this);
     this.getPercentage = this.getPercentage.bind(this);
+    this.toggleDarkMode = this.toggleDarkMode.bind(this);
     this.state = {
       currentFileList: [],
       uploadProgress: {},
       fileKeys: {},
+      colors: defaultModeColors,
+      colorState: 'light',
     };
   }
 
@@ -31,6 +45,21 @@ export default class Home extends React.Component {
       return percentage;
     }
     return 0;
+  }
+
+  toggleDarkMode() {
+    const { colorState } = this.state;
+    if (colorState === 'light') {
+      this.setState({
+        colorState: 'dark',
+        colors: darkModeColors,
+      });
+    } else {
+      this.setState({
+        colorState: 'light',
+        colors: defaultModeColors,
+      });
+    }
   }
 
   openImage(identifier) {
@@ -69,7 +98,9 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { fileKeys, currentFileList, uploadProgress } = this.state;
+    const {
+      colors, fileKeys, currentFileList, uploadProgress,
+    } = this.state;
     return (
       <main className="main-container">
         <Head>
@@ -79,9 +110,10 @@ export default class Home extends React.Component {
           <link href="https://unpkg.com/normalize.css@8.0.1/normalize.css" rel="stylesheet" />
           <link href="https://fonts.googleapis.com/css2?family=Abel&family=Ubuntu&display=swap" rel="stylesheet" />
           <link href="https://css.gg/check.css" rel="stylesheet" />
+          <link href="https://css.gg/moon.css" rel="stylesheet" />
         </Head>
-        <nav className="flex just-space-between align-baseline">
-          <div>
+        <nav className="flex just-space-between align-baseline flex-wrap">
+          <div className="margin-x-2 margin-y-2">
             <a className="animated-underline title" href="/">
               TempX |
               {' '}
@@ -92,7 +124,10 @@ export default class Home extends React.Component {
               </span>
             </a>
           </div>
-          <div>
+          <div className="margin-x-2 margin-y-2 flex align-center">
+            <button type="button" className="margin-x-2 link-button" onClick={this.toggleDarkMode}>
+              <i className="gg-moon dark-mode-button" />
+            </button>
             <a className="animated-underline" href={documentationLink}>
               API Documentation
             </a>
@@ -113,7 +148,7 @@ export default class Home extends React.Component {
                       {currentFileList.map((item) => (
                         <li key={item.name}>
                           <div className="">
-                            <div className="margin-x-1 file-name">
+                            <div className="margin-x-1 margin-y-1 file-name">
                               {
                                 fileKeys[item.name]
                                   ? (
@@ -127,14 +162,14 @@ export default class Home extends React.Component {
                                   : item.name
                               }
                             </div>
-                            <div className="margin-x-1 width-100">
+                            <div className="margin-x-1 margin-y-1 width-100 progressbar-wrapper">
                               <ProgressBar value={uploadProgress[item.name]} />
                             </div>
                           </div>
                         </li>
                       ))}
                     </ul>
-                    <Button className="block margin-x-auto secondary-text" onClick={() => this.setState({ currentFileList: [] })}>
+                    <Button className="block margin-x-auto flat-button" onClick={() => this.setState({ currentFileList: [] })}>
                       Upload More
                     </Button>
                   </div>
@@ -153,17 +188,20 @@ export default class Home extends React.Component {
           {`
 
           :root{
-              --primary-color:#151328;
+              --primary-color:${colors.primaryColor};
               --secondary-color:#888888;
               --margin-small:3px;
               --margin-medium:5px;
               --margin-large:10px;
               --success-color:#57c542;
+              --page-background:${colors.pageBackground};
+              --page-foreground:${colors.pageForeground};
             }
 
             body{
               font-family:'Ubuntu', sans-serif;
               color:var(--secondary-color);
+              background:var(--page-background);
             }
 
             .block{
@@ -172,6 +210,10 @@ export default class Home extends React.Component {
             
             .flex{
               display:flex !important;
+            }
+
+            .flex-wrap{
+              flex-wrap:wrap;
             }
 
             .just-space-between{
@@ -263,6 +305,16 @@ export default class Home extends React.Component {
               margin-bottom:var(--margin-medium);
             }
 
+            .margin-x-1{
+              margin-left:var(--margin-medium);
+              margin-right:var(--margin-medium);
+            }
+
+            .margin-x-2{
+              margin-left:var(--margin-medium);
+              margin-right:var(--margin-medium);
+            }
+
             .margin-x-auto{
               margin-left:auto;
               margin-right:auto;
@@ -288,6 +340,17 @@ export default class Home extends React.Component {
               color:var(--success-color)
             }
 
+            .progressbar-wrapper div[role=progressbar] span{
+              background:var(--primary-color);
+            }
+
+            .flat-button{
+              color:${colors.primaryColor} !important;
+            }
+
+            .dark-mode-button.gg-moon::after{
+              box-shadow: 0px 0px 0px 10px !important;
+            }
 
           `}
         </style>
