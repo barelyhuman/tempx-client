@@ -320,6 +320,7 @@ export default class Home extends React.Component {
 
             .file-list-wrapper{
               list-style-type:none;
+              padding:0px;
             }
 
             .file-list-wrapper li{
