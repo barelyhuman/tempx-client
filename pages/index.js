@@ -69,6 +69,15 @@ export default class Home extends React.Component {
       window.open(url, '_blank');
     }
   }
+  
+  getFileUrl(identifier){
+        const { fileKeys } = this.state;
+    if (fileKeys[identifier]) {
+      const url = `${config.APIURL}/files/get/${fileKeys[identifier]}`;
+return url
+    }
+  }
+  
 
 
   uploadFileOnDrop(e) {
@@ -146,12 +155,15 @@ export default class Home extends React.Component {
                               {
                                 fileKeys[item.name]
                                   ? (
+      <>
                                     <div className="flex align-center">
                                       <button type="button" className="link-button animated-underline" onClick={() => this.openImage(item.name)}>{item.name}</button>
                                       <span className="completed">
                                         <i className="gg-check" />
                                       </span>
                                     </div>
+<a href={getFileUrl(item.name)}>{getFileUrl(item.name)}</a>
+</>
                                   )
                                   : item.name
                               }
